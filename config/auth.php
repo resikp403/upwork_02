@@ -40,6 +40,26 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'sanctum',
+            'provider' => 'users',
+        ],
+        'client_web' => [
+            'driver' => 'session',
+            'provider' => 'clients',
+        ],
+        'client_api' => [
+            'driver' => 'sanctum',
+            'provider' => 'clients',
+        ],
+        'freelancer_web' => [
+            'driver' => 'session',
+            'provider' => 'freelancers',
+        ],
+        'freelancer_api' => [
+            'driver' => 'sanctum',
+            'provider' => 'freelancers',
+        ],
     ],
 
     /*
@@ -63,6 +83,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+        'clients' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Client::class),
+        ],
+        'freelancers' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Freelancer::class),
         ],
 
         // 'users' => [
