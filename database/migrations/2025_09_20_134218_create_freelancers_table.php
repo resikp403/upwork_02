@@ -12,9 +12,18 @@ return new class extends Migration {
     {
         Schema::create('freelancers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->uuid();
+            $table->foreignId('location_id')->index()->nullable()->constrained()->nullOnDelete();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('avatar')->nullable();
             $table->string('username')->unique();
             $table->string('password');
+            $table->double('rating')->default(0);
+            $table->boolean('verified')->default(0);
+            $table->unsignedInteger('total_jobs')->default(0);
+            $table->unsignedInteger('total_earnings')->default(0);
+            $table->json('previous_clients')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
