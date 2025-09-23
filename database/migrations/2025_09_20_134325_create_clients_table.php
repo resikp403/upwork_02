@@ -25,6 +25,7 @@ return new class extends Migration {
             $table->unsignedInteger('total_spent')->default(0);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

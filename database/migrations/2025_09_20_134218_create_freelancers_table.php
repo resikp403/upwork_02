@@ -26,6 +26,7 @@ return new class extends Migration {
             $table->json('previous_clients')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
