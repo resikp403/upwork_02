@@ -1,5 +1,5 @@
 <?php
 
-require 'api_admin.php';
-require 'api_client.php';
-require 'api_freelancer.php';
+require 'api/admin.php';
+require 'api/client.php';
+require 'api/freelancer.php';
