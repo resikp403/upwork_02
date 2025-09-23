@@ -17,10 +17,7 @@ class FreelancerFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'username' => fake()->unique()->numberBetween(60000000, 65999999),
-            'password' => bcrypt(rand(10000, 99999)),
-            'remember_token' => str()->random(10),
+            //
         ];
     }
 }

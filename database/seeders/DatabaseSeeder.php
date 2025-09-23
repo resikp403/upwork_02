@@ -14,10 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Administrator',
-            'username' => 'admin',
-            'password' => 'upwork2025',
+        User::factory()
+            ->create([
+                'name' => 'Administrator',
+                'username' => 'admin',
+                'password' => 'upwork2025',
+            ]);
+
+        User::factory()
+            ->count(3)
+            ->create();
+
+        $this->call([
+            LocationSeeder::class,
+            SkillSeeder::class,
         ]);
     }
 }
