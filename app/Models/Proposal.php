@@ -10,6 +10,18 @@ class Proposal extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        'id',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+
     public function work(): BelongsTo
     {
         return $this->belongsTo(Work::class);

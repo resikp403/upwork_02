@@ -10,6 +10,18 @@ class Review extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        'id',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+
     public function freelancer(): BelongsTo
     {
         return $this->belongsTo(Freelancer::class);

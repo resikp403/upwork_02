@@ -12,6 +12,19 @@ class Work extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        'id',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'last_viewed' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
