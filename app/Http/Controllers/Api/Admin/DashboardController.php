@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DashboardController extends Controller
 {
-    public function dashboard()
+    public function index()
     {
         return response()->json([
             'status' => 1,

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('username')->unique();
             $table->string('code');
-            $table->unsignedTinyInteger('auth_method')->default(0);
+            $table->unsignedTinyInteger('method')->default(0);
             $table->unsignedTinyInteger('status')->default(0);
             $table->timestamps();
         });

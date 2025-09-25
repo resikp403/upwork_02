@@ -17,4 +17,12 @@ class Verification extends Model
             'updated_at' => 'datetime',
         ];
     }
+
+//    0 => Pending
+//    1 => Sent
+//    2 => Completed
+//    3 => Canceled
+
+//    0 => Phone
+//    1 => E-mail
 }
