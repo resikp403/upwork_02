@@ -18,11 +18,13 @@ class Verification extends Model
         ];
     }
 
-//    0 => Pending
-//    1 => Sent
-//    2 => Completed
-//    3 => Canceled
+    public function getMethod()
+    {
+        return ['Phone', 'E-mail'][$this->method];
+    }
 
-//    0 => Phone
-//    1 => E-mail
+    public function getStatus()
+    {
+        return ['Pending', 'Completed', 'Canceled'][$this->status];
+    }
 }

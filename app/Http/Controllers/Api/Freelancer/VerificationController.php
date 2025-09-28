@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Api\Freelancer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Verification;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Fluent;
 use Symfony\Component\HttpFoundation\Response;
 
 class VerificationController extends Controller
@@ -27,15 +23,13 @@ class VerificationController extends Controller
         }
 
         $obj = Verification::where('username', $request->username)
-            ->whereIn('status', [0, 1, 3])
-            ->where('method', 0)
-            ->where('updated_at', '>', now()->subMinutes(2))
+            ->whereIn('status', [0, 2]) // Pending, Canceled
+            ->where('method', 0) // Phone
+            ->where('updated_at', '>', now()->subMinutes(3)) // Last 3 minutes
             ->orderBy('id', 'desc')
             ->first();
 
-        if ($obj) {
-            $obj->update();
-        } else {
+        if (!$obj) {
             $obj = Verification::updateOrCreate([
                 'username' => $request->username,
                 'method' => 0,
@@ -45,12 +39,10 @@ class VerificationController extends Controller
             ]);
         }
 
-        // CODE SENT
-        $obj->status = 1;
-        $obj->update();
-
         return response()->json([
             'status' => 1,
+            'data' => $obj->code,
+            'message' => 'Verification code generated successfully.',
         ], Response::HTTP_OK);
     }
 
@@ -68,21 +60,22 @@ class VerificationController extends Controller
         }
 
         $obj = Verification::where('username', $request->username)
-            ->where('code', $request->code)
-            ->whereIn('status', [0, 1, 3])
-            ->where('method', 0)
-            ->where('updated_at', '>', now()->subMinutes(2))
+            ->where('code', $request->code) // Verification code
+            ->whereIn('status', [0, 2]) // Pending, Canceled
+            ->where('method', 0) // Phone
+            ->where('updated_at', '>', now()->subMinutes(3)) // Last 3 minutes
             ->orderBy('id', 'desc')
             ->first();
 
         if ($obj) {
             return response()->json([
                 'status' => 1,
+                'message' => 'Verification successful.',
             ], Response::HTTP_OK);
         } else {
             return response()->json([
                 'status' => 0,
-                'message' => 'Invalid verification code',
+                'message' => 'Invalid or expired verification code.',
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }

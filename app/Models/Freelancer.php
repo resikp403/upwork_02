@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class Freelancer extends Authenticatable
@@ -34,6 +35,14 @@ class Freelancer extends Authenticatable
             'updated_at' => 'datetime',
             'deleted_at' => 'datetime',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::creating(function (Freelancer $freelancer) {
+            $freelancer->uuid = Str::orderedUuid();
+            $freelancer->previous_clients = [];
+        });
     }
 
     public function location(): BelongsTo
