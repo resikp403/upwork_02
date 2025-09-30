@@ -37,10 +37,12 @@ class AuthController extends Controller
 
         return response()->json([
             'status' => 1,
-            'id' => $user->id,
-            'name' => $user->name,
-            'username' => $user->username,
-            'accessToken' => $token,
+            'data' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'username' => $user->username,
+                'accessToken' => $token,
+            ]
         ], Response::HTTP_OK);
     }
 
