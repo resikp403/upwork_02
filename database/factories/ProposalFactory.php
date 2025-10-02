@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,16 @@ class ProposalFactory extends Factory
      */
     public function definition(): array
     {
+        $client = Client::inRandomOrder()->first();
+        $profile = Profile::inRandomOrder()->first();
+
         return [
-            //
+            'uuid' => fake()->uuid(),
+            'client_id' => $client->id,
+            'freelancer_id' => $profile->freelancer_id,
+            'profile_id' => $profile->id,
+            'cover_letter' => fake()->paragraphs(3, true),
+            'status' => fake()->numberBetween(0, 2),
         ];
     }
 }

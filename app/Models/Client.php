@@ -51,14 +51,12 @@ class Client extends Authenticatable
     public function myReviews(): HasMany
     {
         return $this->hasMany(Review::class)
-            ->where('from', 'client')
-            ->where('to', 'freelancer');
+            ->where('from', 'client');
     }
 
     public function freelancerReviews(): HasMany
     {
         return $this->hasMany(Review::class)
-            ->where('from', 'freelancer')
-            ->where('to', 'client');
+            ->where('from', 'freelancer');
     }
 }

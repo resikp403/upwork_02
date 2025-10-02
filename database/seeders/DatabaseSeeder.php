@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Client;
 use App\Models\Freelancer;
 use App\Models\Profile;
+use App\Models\Proposal;
+use App\Models\Review;
 use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -41,11 +43,19 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         Client::factory()
-            ->count(50)
+            ->count(10)
             ->create();
 
         Work::factory()
+            ->count(50)
+            ->create();
+
+        Proposal::factory()
             ->count(100)
+            ->create();
+
+        Review::factory()
+            ->count(50)
             ->create();
 
         Verification::factory()
