@@ -18,13 +18,15 @@ class FreelancerFactory extends Factory
      */
     public function definition(): array
     {
+        $location = Location::inRandomOrder()->first();
+
         return [
             'uuid' => fake()->uuid(),
-            'location_id' => Location::inRandomOrder()->value('id'),
+            'location_id' => $location->id,
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'avatar' => null,
-            'username' => fake()->unique()->userName(),
+            'username' => fake()->unique()->numberBetween(60000000, 65999999),
             'password' => bcrypt('password'),
             'rating' => fake()->randomFloat(1, 0, 5),
             'verified' => fake()->boolean(),
@@ -32,6 +34,9 @@ class FreelancerFactory extends Factory
             'total_earnings' => fake()->numberBetween(0, 100000),
             'previous_clients' => [],
             'remember_token' => Str::random(10),
+            'deleted_at' => fake()->boolean(10)
+                ? fake()->dateTimeBetween('-90 days', 'now')
+                : null,
         ];
     }
 }

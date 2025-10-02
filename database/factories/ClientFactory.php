@@ -24,13 +24,15 @@ class ClientFactory extends Factory
      */
     public function definition(): array
     {
+        $location = Location::inRandomOrder()->first();
+
         return [
             'uuid' => fake()->uuid(),
-            'location_id' => Location::inRandomOrder()->value('id'),
+            'location_id' => $location->id,
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'avatar' => null,
-            'username' => fake()->unique()->userName(),
+            'username' => fake()->unique()->safeEmail(),
             'password' => bcrypt('password'),
             'rating' => fake()->randomFloat(1, 0, 5),
             'phone_number_verified' => fake()->boolean(),
@@ -39,6 +41,9 @@ class ClientFactory extends Factory
             'total_spent' => fake()->numberBetween(0, 100000),
             'previous_freelancers' => [],
             'remember_token' => Str::random(10),
+            'deleted_at' => fake()->boolean(10)
+                ? fake()->dateTimeBetween('-90 days', 'now')
+                : null,
         ];
     }
 }

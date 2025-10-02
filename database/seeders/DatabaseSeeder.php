@@ -2,11 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
 use App\Models\Freelancer;
 use App\Models\Profile;
 use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Verification;
+use App\Models\Work;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -33,10 +36,20 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Freelancer::factory()
-            ->count(100)
+            ->count(50)
             ->has(Profile::factory()->count(2))
             ->create();
 
+        Client::factory()
+            ->count(50)
+            ->create();
 
+        Work::factory()
+            ->count(100)
+            ->create();
+
+        Verification::factory()
+            ->count(10)
+            ->create();
     }
 }
