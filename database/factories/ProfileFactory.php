@@ -17,7 +17,9 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'uuid' => fake()->uuid(),
+            'title' => fake()->jobTitle(),
+            'body' => fake()->paragraphs(3, true),
         ];
     }
 }

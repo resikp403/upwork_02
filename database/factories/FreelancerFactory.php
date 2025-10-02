@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Freelancer>
@@ -17,7 +19,19 @@ class FreelancerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'uuid' => fake()->uuid(),
+            'location_id' => Location::inRandomOrder()->value('id'),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'avatar' => fake()->imageUrl(200, 200, 'people', true, 'avatar'),
+            'username' => fake()->unique()->userName(),
+            'password' => bcrypt('password'),
+            'rating' => fake()->randomFloat(1, 0, 5),
+            'verified' => fake()->boolean(),
+            'total_jobs' => fake()->numberBetween(0, 200),
+            'total_earnings' => fake()->numberBetween(0, 100000),
+            'previous_clients' => [],
+            'remember_token' => Str::random(10),
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Freelancer;
+use App\Models\Profile;
 use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -20,14 +22,16 @@ class DatabaseSeeder extends Seeder
                 'username' => 'admin',
                 'password' => 'upwork2025',
             ]);
-
         User::factory()
-            ->count(3)
+            ->count(5)
             ->create();
-
         $this->call([
             LocationSeeder::class,
             SkillSeeder::class,
         ]);
+        Freelancer::factory()
+            ->count(100)
+            ->has(Profile::factory()->count(2))
+            ->create();
     }
 }
