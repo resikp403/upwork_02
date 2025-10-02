@@ -15,7 +15,8 @@ return new class extends Migration {
             $table->uuid();
             $table->foreignId('freelancer_id')->index()->constrained()->cascadeOnDelete();
             $table->foreignId('client_id')->index()->constrained()->cascadeOnDelete();
-            $table->unsignedTinyInteger('owner')->default(0);
+            $table->string('from');
+            $table->string('to');
             $table->unsignedTinyInteger('rating')->default(0);
             $table->text('comment');
             $table->timestamps();

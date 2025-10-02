@@ -19,6 +19,9 @@ class Freelancer extends Authenticatable
     protected $guarded = [
         'id',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $hidden = [
@@ -68,13 +71,15 @@ class Freelancer extends Authenticatable
     public function myReviews(): HasMany
     {
         return $this->hasMany(Review::class)
-            ->where('owner', 0);
+            ->where('from', 'freelancer')
+            ->where('to', 'client');
     }
 
     public function clientReviews(): HasMany
     {
         return $this->hasMany(Review::class)
-            ->where('owner', 1);
+            ->where('from', 'client')
+            ->where('to', 'freelancer');
     }
 
     public function freelancerSkills(): BelongsToMany

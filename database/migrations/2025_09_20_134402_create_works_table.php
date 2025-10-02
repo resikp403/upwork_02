@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->unsignedTinyInteger('project_type')->default(0);
             $table->unsignedTinyInteger('project_length')->default(0);
             $table->unsignedTinyInteger('hours_per_week')->default(0);
-            $table->dateTime('last_viewed');
+            $table->dateTime('last_viewed')->useCurrent();
             $table->timestamps();
         });
     }

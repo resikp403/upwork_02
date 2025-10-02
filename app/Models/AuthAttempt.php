@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AuthAttempt extends Model
 {
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id',
+        'created_at',
+    ];
 
     protected function casts(): array
     {

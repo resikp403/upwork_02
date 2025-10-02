@@ -12,6 +12,8 @@ class Proposal extends Model
 
     protected $guarded = [
         'id',
+        'created_at',
+        'updated_at',
     ];
 
     protected function casts(): array

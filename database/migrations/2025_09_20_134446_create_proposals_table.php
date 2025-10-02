@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->foreignId('work_id')->index()->constrained()->cascadeOnDelete();
             $table->foreignId('freelancer_id')->index()->constrained()->cascadeOnDelete();
             $table->foreignId('profile_id')->index()->constrained()->cascadeOnDelete();
-            $table->string('cover_letter');
+            $table->text('cover_letter');
             $table->unsignedTinyInteger('status')->default(0);
             $table->timestamps();
         });

@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->foreignId('location_id')->index()->nullable()->constrained()->nullOnDelete();
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('avatar')->nullable();
             $table->string('username')->unique();
             $table->string('password');
             $table->double('rating')->default(0);
@@ -23,6 +24,7 @@ return new class extends Migration {
             $table->boolean('payment_method_verified')->default(0);
             $table->unsignedInteger('total_jobs')->default(0);
             $table->unsignedInteger('total_spent')->default(0);
+            $table->json('previous_freelancers')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
