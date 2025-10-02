@@ -23,7 +23,7 @@ class FreelancerFactory extends Factory
             'location_id' => Location::inRandomOrder()->value('id'),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'avatar' => fake()->imageUrl(200, 200, 'people', true, 'avatar'),
+            'avatar' => null,
             'username' => fake()->unique()->userName(),
             'password' => bcrypt('password'),
             'rating' => fake()->randomFloat(1, 0, 5),
