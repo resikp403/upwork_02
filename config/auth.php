@@ -44,17 +44,9 @@ return [
             'driver' => 'sanctum',
             'provider' => 'users',
         ],
-        'client_web' => [
-            'driver' => 'session',
-            'provider' => 'clients',
-        ],
         'client_api' => [
             'driver' => 'sanctum',
             'provider' => 'clients',
-        ],
-        'freelancer_web' => [
-            'driver' => 'session',
-            'provider' => 'freelancers',
         ],
         'freelancer_api' => [
             'driver' => 'sanctum',
