@@ -20,13 +20,13 @@ class WorkFactory extends Factory
     public function definition(): array
     {
         $client = Client::inRandomOrder()->first();
-        $profile = Profile::inRandomOrder()->first();
+        $profile = fake()->boolean() ? Profile::inRandomOrder()->first() : null;
 
         return [
             'uuid' => fake()->uuid(),
             'client_id' => $client->id,
-            'freelancer_id' => $profile->freelancer_id,
-            'profile_id' => $profile->id,
+            'freelancer_id' => isset($profile) ? $profile->freelancer_id : null,
+            'profile_id' => isset($profile) ? $profile->id : null,
             'title' => fake()->sentence(6, true),
             'body' => fake()->paragraphs(3, true),
             'experience_level' => fake()->numberBetween(0, 2), // 0)EntryLevel 1)Intermediate 2)Expert

@@ -24,11 +24,11 @@ class ClientFactory extends Factory
      */
     public function definition(): array
     {
-        $location = Location::inRandomOrder()->first();
+        $location = fake()->boolean(90) ? Location::inRandomOrder()->first() : null;
 
         return [
             'uuid' => fake()->uuid(),
-            'location_id' => $location->id,
+            'location_id' => isset($location) ? $location->id : null,
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'avatar' => null,
@@ -41,9 +41,7 @@ class ClientFactory extends Factory
             'total_spent' => fake()->numberBetween(0, 100000),
             'previous_freelancers' => [],
             'remember_token' => Str::random(10),
-            'deleted_at' => fake()->boolean(10)
-                ? fake()->dateTimeBetween('-90 days', 'now')
-                : null,
+            'deleted_at' => fake()->boolean(10) ? fake()->dateTimeBetween('-90 days', 'now') : null,
         ];
     }
 }

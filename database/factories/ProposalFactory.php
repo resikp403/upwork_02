@@ -18,12 +18,12 @@ class ProposalFactory extends Factory
      */
     public function definition(): array
     {
-        $client = Client::inRandomOrder()->first();
+        $work = Client::inRandomOrder()->first();
         $profile = Profile::inRandomOrder()->first();
 
         return [
             'uuid' => fake()->uuid(),
-            'client_id' => $client->id,
+            'work_id' => $work->id,
             'freelancer_id' => $profile->freelancer_id,
             'profile_id' => $profile->id,
             'cover_letter' => fake()->paragraphs(3, true),
