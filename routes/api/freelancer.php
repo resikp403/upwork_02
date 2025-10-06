@@ -28,7 +28,12 @@ Route::prefix('v1/freelancer')
             ->group(function () {
                 Route::controller(DashboardController::class)
                     ->group(function () {
-                        Route::get('dashboard', 'index');
+                        Route::get('index', 'index');
+                        Route::get('show/{id?}','show')->name('show')->where(['id' => '[0-9]+']);
+                        Route::put('update/{id}', 'update')->name('update')->where(['id' => '[0-9]+']);
+                        Route::delete('destroy/{id}', 'destroy')->name('destroy')->where(['id' => '[0-9]+']);
+                        Route::post('filter', 'filter');
                     });
             });
+            
     });

@@ -29,5 +29,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+
+        
+
     }
 }

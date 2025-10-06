@@ -7,8 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Review extends Model
-{
+{   
     use HasFactory;
+
+    protected $fillable = [
+        'uuid',
+        'freelancer_id',
+        'client_id',
+        'from',
+        'rating',
+        'comment',
+    ];
 
     protected $guarded = [
         'id',

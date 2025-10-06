@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\IpAddress;
 use App\Models\UserAgent;
 use App\Models\Visitor;
+use App\Models\Freelancer;
 use Closure;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
